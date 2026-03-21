@@ -1,0 +1,21 @@
+{
+  "name": "charchar",
+  "description": "Character design skills for AI coding tools. Includes 19 skills (18 user-invocable: /create-character, /pixel-art, /animate-char, /create-3d, etc.) and an auto-loaded character-design skill with curated best practices for anatomy, proportions, color theory, expressions, silhouettes, and style.",
+  "version": "1.0.0",
+  "author": {
+    "name": "all-o-labs"
+  },
+  "homepage": "https://charchar.style",
+  "repository": "https://github.com/all-o-labs/charchar",
+  "license": "MIT",
+  "keywords": [
+    "character-design",
+    "game-dev",
+    "pixel-art",
+    "sprite",
+    "3d",
+    "avatar",
+    "animation"
+  ],
+  "skills": "./.claude/skills"
+}

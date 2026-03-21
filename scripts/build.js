@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { rmSync, mkdirSync, existsSync } from 'fs';
+import { rmSync, mkdirSync, existsSync, cpSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { readSourceSkills } from './lib/utils.js';
@@ -34,5 +34,14 @@ console.log('');
 // Transform for each provider
 console.log('Transforming...');
 transformClaudeCode(skills, DIST_DIR);
+
+// Also output to .claude/skills/ for plugin mode
+const pluginSkillsDir = join(ROOT, '.claude', 'skills');
+if (existsSync(pluginSkillsDir)) {
+  rmSync(pluginSkillsDir, { recursive: true });
+}
+const distSkillsDir = join(DIST_DIR, 'claude-code', '.claude', 'skills');
+cpSync(distSkillsDir, pluginSkillsDir, { recursive: true });
+console.log(`  Plugin: ${skills.length} skills → ${pluginSkillsDir}`);
 
 console.log('\nBuild complete!');
