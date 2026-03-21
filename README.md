@@ -7,18 +7,13 @@ Make your AI create stunning 2D/3D characters — pixel art, sprites, 3D models,
 ## Install
 
 ```bash
-# One-line install (or update)
-bash <(curl -fsSL https://raw.githubusercontent.com/all-o-labs/charchar/main/scripts/setup.sh)
+curl -fsSL https://raw.githubusercontent.com/all-o-labs/charchar/main/scripts/setup.sh | bash
 ```
 
 Or manually:
 
 ```bash
-# Claude Code plugin
 claude plugin add all-o-labs/charchar
-
-# npx (after npm publish)
-npx charchar
 ```
 
 Skills are installed into `.claude/skills/` and loaded automatically.

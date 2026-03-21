@@ -21,7 +21,7 @@ echo "    1) Global  — available in all projects"
 echo "    2) Project — this project only ($(basename "$PWD"))"
 echo ""
 printf "  Choose [1/2] (default: 1): "
-read -r choice
+read -r choice </dev/tty 2>/dev/null || choice="1"
 
 case "${choice:-1}" in
   2) SCOPE="--project" ; SCOPE_LABEL="project" ;;
