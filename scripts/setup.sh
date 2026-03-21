@@ -39,13 +39,15 @@ else
   claude plugin marketplace add "$MARKETPLACE" --scope "$SCOPE"
 fi
 
-# Try update first, if it fails then install fresh
-if claude plugin update "$PLUGIN" --scope "$SCOPE" 2>/dev/null; then
-  echo "  ✓ charchar updated ($SCOPE)"
+# Always install — claude plugin install handles "already installed" gracefully
+echo "  ↓ Installing charchar ($SCOPE)..."
+if claude plugin install "$PLUGIN" --scope "$SCOPE" 2>&1; then
+  echo "  ✓ charchar ready ($SCOPE)"
 else
-  echo "  ↓ Installing charchar ($SCOPE)..."
-  claude plugin install "$PLUGIN" --scope "$SCOPE"
-  echo "  ✓ charchar installed ($SCOPE)"
+  # If install fails (already exists at this scope), try update
+  echo "  ↻ Already installed, updating..."
+  claude plugin update "$PLUGIN" --scope "$SCOPE" 2>&1 || true
+  echo "  ✓ charchar ready ($SCOPE)"
 fi
 
 echo ""
