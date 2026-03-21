@@ -1,0 +1,27 @@
+{
+  "name": "charchar",
+  "owner": {
+    "name": "all-o-labs"
+  },
+  "plugins": [
+    {
+      "name": "charchar",
+      "description": "19 character design skills for Claude Code — pixel art, sprites, 3D models, avatars, animations, and more.",
+      "version": "1.0.0",
+      "author": {
+        "name": "all-o-labs"
+      },
+      "source": "./",
+      "category": "development",
+      "homepage": "https://github.com/all-o-labs/charchar",
+      "tags": [
+        "character-design",
+        "game-dev",
+        "pixel-art",
+        "sprite",
+        "3d",
+        "animation"
+      ]
+    }
+  ]
+}

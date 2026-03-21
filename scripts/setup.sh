@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="all-o-labs/charchar"
+MARKETPLACE="all-o-labs/charchar"
+PLUGIN="charchar"
 
 echo ""
 echo "  ✦ charchar — character design skill pack for Claude Code"
@@ -17,28 +18,36 @@ fi
 # Ask scope
 echo "  Where do you want to install charchar?"
 echo ""
-echo "    1) Global  — available in all projects"
+echo "    1) User    — available in all your projects (default)"
 echo "    2) Project — this project only ($(basename "$PWD"))"
 echo ""
 printf "  Choose [1/2] (default: 1): "
 read -r choice </dev/tty 2>/dev/null || choice="1"
 
 case "${choice:-1}" in
-  2) SCOPE="--project" ; SCOPE_LABEL="project" ;;
-  *) SCOPE="--global"  ; SCOPE_LABEL="global" ;;
+  2) SCOPE="project" ;;
+  *) SCOPE="user" ;;
 esac
 
 echo ""
 
-# Install or update
-if claude plugin list 2>/dev/null | grep -q "charchar"; then
-  echo "  ↻ Updating charchar ($SCOPE_LABEL)..."
-  claude plugin update "$REPO" $SCOPE
-  echo "  ✓ charchar updated ($SCOPE_LABEL)"
+# Add marketplace if not already added
+if claude plugin marketplace list 2>/dev/null | grep -q "$PLUGIN"; then
+  echo "  ✓ Marketplace already registered"
 else
-  echo "  ↓ Installing charchar ($SCOPE_LABEL)..."
-  claude plugin add "$REPO" $SCOPE
-  echo "  ✓ charchar installed ($SCOPE_LABEL)"
+  echo "  + Adding charchar marketplace..."
+  claude plugin marketplace add "$MARKETPLACE" --scope "$SCOPE"
+fi
+
+# Install or update
+if claude plugin list 2>/dev/null | grep -q "$PLUGIN"; then
+  echo "  ↻ Updating charchar..."
+  claude plugin update "$PLUGIN" --scope "$SCOPE"
+  echo "  ✓ charchar updated"
+else
+  echo "  ↓ Installing charchar..."
+  claude plugin install "$PLUGIN" --scope "$SCOPE"
+  echo "  ✓ charchar installed"
 fi
 
 echo ""
