@@ -14,15 +14,31 @@ if ! command -v claude &>/dev/null; then
   exit 1
 fi
 
+# Ask scope
+echo "  Where do you want to install charchar?"
+echo ""
+echo "    1) Global  — available in all projects"
+echo "    2) Project — this project only ($(basename "$PWD"))"
+echo ""
+printf "  Choose [1/2] (default: 1): "
+read -r choice
+
+case "${choice:-1}" in
+  2) SCOPE="--project" ; SCOPE_LABEL="project" ;;
+  *) SCOPE="--global"  ; SCOPE_LABEL="global" ;;
+esac
+
+echo ""
+
 # Install or update
 if claude plugin list 2>/dev/null | grep -q "charchar"; then
-  echo "  ↻ Updating charchar..."
-  claude plugin update "$REPO"
-  echo "  ✓ charchar updated"
+  echo "  ↻ Updating charchar ($SCOPE_LABEL)..."
+  claude plugin update "$REPO" $SCOPE
+  echo "  ✓ charchar updated ($SCOPE_LABEL)"
 else
-  echo "  ↓ Installing charchar..."
-  claude plugin add "$REPO"
-  echo "  ✓ charchar installed"
+  echo "  ↓ Installing charchar ($SCOPE_LABEL)..."
+  claude plugin add "$REPO" $SCOPE
+  echo "  ✓ charchar installed ($SCOPE_LABEL)"
 fi
 
 echo ""
