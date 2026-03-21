@@ -1,0 +1,37 @@
+{
+  "name": "charchar",
+  "version": "1.0.0",
+  "description": "AI coding tool skill pack for character design — make your AI create stunning 2D/3D characters",
+  "type": "module",
+  "bin": {
+    "charchar": "./scripts/install.js"
+  },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node public/server.js"
+  },
+  "files": [
+    "dist/",
+    "scripts/"
+  ],
+  "keywords": [
+    "claude-code",
+    "character-design",
+    "game-dev",
+    "pixel-art",
+    "sprite",
+    "3d",
+    "ai-skills",
+    "claude-skills"
+  ],
+  "author": "all-o-labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/all-o-labs/charchar.git"
+  },
+  "homepage": "https://charchar.style",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}

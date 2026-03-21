@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>charchar — Cheatsheet</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .cheatsheet { padding: 100px 24px 80px; }
+    .cheatsheet-inner { max-width: var(--max-w); margin: 0 auto; }
+    .cheatsheet h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+    .cheatsheet .subtitle { color: var(--text-muted); margin-bottom: 48px; font-size: 1rem; }
+
+    .cs-category { margin-bottom: 40px; }
+    .cs-category-title {
+      font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--accent); margin-bottom: 12px;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    }
+
+    .cs-table { width: 100%; border-collapse: collapse; }
+    .cs-table th, .cs-table td { text-align: left; padding: 10px 12px; font-size: 0.9rem; }
+    .cs-table th { color: var(--text-muted); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .cs-table tr { border-bottom: 1px solid var(--border); }
+    .cs-table tr:last-child { border-bottom: none; }
+    .cs-table td:first-child code { color: var(--accent); background: none; padding: 0; font-size: 0.9rem; }
+    .cs-table td:nth-child(2) { color: var(--text-muted); }
+    .cs-table td:nth-child(3) { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; }
+
+    .cs-search {
+      width: 100%; padding: 12px 16px; font-size: 1rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text);
+      font-family: var(--font-sans); margin-bottom: 32px;
+      outline: none;
+    }
+    .cs-search:focus { border-color: var(--accent-dim); }
+    .cs-search::placeholder { color: var(--text-muted); }
+
+    .cs-hidden { display: none; }
+
+    @media (max-width: 768px) {
+      .cs-table td:nth-child(3) { display: none; }
+      .cs-table th:nth-child(3) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo">char<span class="logo-accent">char</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="https://github.com/all-o-labs/charchar" target="_blank">GitHub</a>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon-dark">☀</span>
+          <span class="theme-icon-light">☾</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="cheatsheet">
+    <div class="cheatsheet-inner">
+      <h1>Cheatsheet</h1>
+      <p class="subtitle">All 19 charchar skills at a glance</p>
+
+      <input type="text" class="cs-search" placeholder="Search skills..." id="search">
+
+      <div class="cs-category" data-category="system-auto">
+        <div class="cs-category-title">Auto-loaded (always active)</div>
+        <table class="cs-table">
+          <thead><tr><th>Skill</th><th>Description</th><th>Args</th></tr></thead>
+          <tbody>
+            <tr><td><code>character-design</code></td><td>Core best practices — proportions, color harmony, silhouette readability</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cs-category" data-category="create">
+        <div class="cs-category-title">Create</div>
+        <table class="cs-table">
+          <thead><tr><th>Command</th><th>Description</th><th>Args</th></tr></thead>
+          <tbody>
+            <tr><td><code>/create-character</code></td><td>Full character from concept to code</td><td>concept, style?, size?</td></tr>
+            <tr><td><code>/create-sprite</code></td><td>2D game sprites (pixel, vector, canvas)</td><td>character, format?, resolution?</td></tr>
+            <tr><td><code>/create-3d</code></td><td>Three.js / WebGL 3D character</td><td>character, polycount?, texture?</td></tr>
+            <tr><td><code>/create-avatar</code></td><td>Profile avatar (SVG, multi-platform)</td><td>style?, size?, platform?</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cs-category" data-category="style">
+        <div class="cs-category-title">Style</div>
+        <table class="cs-table">
+          <thead><tr><th>Command</th><th>Description</th><th>Args</th></tr></thead>
+          <tbody>
+            <tr><td><code>/pixel-art</code></td><td>Pixel art with palette limits and dithering</td><td>character, resolution?, palette?</td></tr>
+            <tr><td><code>/chibi</code></td><td>Super-deformed 2-3 head ratio</td><td>character, head_ratio?</td></tr>
+            <tr><td><code>/realistic</code></td><td>Anatomically accurate realistic style</td><td>character, detail_level?</td></tr>
+            <tr><td><code>/flat</code></td><td>Minimal flat design, no outlines</td><td>character, complexity?</td></tr>
+            <tr><td><code>/retro</code></td><td>8-bit / 16-bit retro era</td><td>character, era?, platform?</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cs-category" data-category="enhance">
+        <div class="cs-category-title">Enhance</div>
+        <table class="cs-table">
+          <thead><tr><th>Command</th><th>Description</th><th>Args</th></tr></thead>
+          <tbody>
+            <tr><td><code>/animate-char</code></td><td>Character animations (idle, walk, run, attack)</td><td>character, animation_type?, fps?</td></tr>
+            <tr><td><code>/expression-sheet</code></td><td>Expression grid with intensity levels</td><td>character, expressions?</td></tr>
+            <tr><td><code>/sprite-sheet</code></td><td>Pack frames into optimized sprite sheets</td><td>sprites, columns?, padding?</td></tr>
+            <tr><td><code>/color-palette</code></td><td>Generate harmonious color palettes</td><td>character?, mood?, scheme?</td></tr>
+            <tr><td><code>/turnaround</code></td><td>Multi-view turnaround sheet</td><td>character, views?</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cs-category" data-category="quality">
+        <div class="cs-category-title">Quality</div>
+        <table class="cs-table">
+          <thead><tr><th>Command</th><th>Description</th><th>Args</th></tr></thead>
+          <tbody>
+            <tr><td><code>/polish-char</code></td><td>Scan and improve character quality</td><td>character_file</td></tr>
+            <tr><td><code>/critique-char</code></td><td>Design critique with scoring</td><td>character_file, focus?</td></tr>
+            <tr><td><code>/harmonize</code></td><td>Unify style across character cast</td><td>character_files...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cs-category" data-category="system">
+        <div class="cs-category-title">System</div>
+        <table class="cs-table">
+          <thead><tr><th>Command</th><th>Description</th><th>Args</th></tr></thead>
+          <tbody>
+            <tr><td><code>/teach-charchar</code></td><td>Scan project and generate .charchar config</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>charchar — by <a href="https://github.com/all-o-labs" target="_blank">all-o-labs</a></p>
+      <p>MIT License</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    const search = document.getElementById('search');
+    const rows = document.querySelectorAll('.cs-table tbody tr');
+    const categories = document.querySelectorAll('.cs-category');
+
+    search.addEventListener('input', () => {
+      const q = search.value.toLowerCase().trim();
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.classList.toggle('cs-hidden', q && !text.includes(q));
+      });
+      categories.forEach(cat => {
+        const visible = cat.querySelectorAll('tbody tr:not(.cs-hidden)');
+        cat.classList.toggle('cs-hidden', q && visible.length === 0);
+      });
+    });
+  </script>
+</body>
+</html>
